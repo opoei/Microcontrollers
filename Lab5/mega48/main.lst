@@ -1,0 +1,300 @@
+
+main.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000000  00800100  00000126  000001ba  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         00000126  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .bss          00000050  00800100  00800100  000001ba  2**0
+                  ALLOC
+  3 .comment      00000011  00000000  00000000  000001ba  2**0
+                  CONTENTS, READONLY
+  4 .debug_aranges 00000080  00000000  00000000  000001d0  2**3
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   0000049f  00000000  00000000  00000250  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 0000024e  00000000  00000000  000006ef  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   000001f5  00000000  00000000  0000093d  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  00000098  00000000  00000000  00000b34  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    00000125  00000000  00000000  00000bcc  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    000001ff  00000000  00000000  00000cf1  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 00000028  00000000  00000000  00000ef0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	19 c0       	rjmp	.+50     	; 0x34 <__ctors_end>
+   2:	28 c0       	rjmp	.+80     	; 0x54 <__bad_interrupt>
+   4:	27 c0       	rjmp	.+78     	; 0x54 <__bad_interrupt>
+   6:	26 c0       	rjmp	.+76     	; 0x54 <__bad_interrupt>
+   8:	25 c0       	rjmp	.+74     	; 0x54 <__bad_interrupt>
+   a:	24 c0       	rjmp	.+72     	; 0x54 <__bad_interrupt>
+   c:	23 c0       	rjmp	.+70     	; 0x54 <__bad_interrupt>
+   e:	22 c0       	rjmp	.+68     	; 0x54 <__bad_interrupt>
+  10:	21 c0       	rjmp	.+66     	; 0x54 <__bad_interrupt>
+  12:	20 c0       	rjmp	.+64     	; 0x54 <__bad_interrupt>
+  14:	1f c0       	rjmp	.+62     	; 0x54 <__bad_interrupt>
+  16:	1e c0       	rjmp	.+60     	; 0x54 <__bad_interrupt>
+  18:	1d c0       	rjmp	.+58     	; 0x54 <__bad_interrupt>
+  1a:	1c c0       	rjmp	.+56     	; 0x54 <__bad_interrupt>
+  1c:	1b c0       	rjmp	.+54     	; 0x54 <__bad_interrupt>
+  1e:	1a c0       	rjmp	.+52     	; 0x54 <__bad_interrupt>
+  20:	19 c0       	rjmp	.+50     	; 0x54 <__bad_interrupt>
+  22:	18 c0       	rjmp	.+48     	; 0x54 <__bad_interrupt>
+  24:	17 c0       	rjmp	.+46     	; 0x54 <__bad_interrupt>
+  26:	16 c0       	rjmp	.+44     	; 0x54 <__bad_interrupt>
+  28:	15 c0       	rjmp	.+42     	; 0x54 <__bad_interrupt>
+  2a:	14 c0       	rjmp	.+40     	; 0x54 <__bad_interrupt>
+  2c:	13 c0       	rjmp	.+38     	; 0x54 <__bad_interrupt>
+  2e:	12 c0       	rjmp	.+36     	; 0x54 <__bad_interrupt>
+  30:	11 c0       	rjmp	.+34     	; 0x54 <__bad_interrupt>
+  32:	10 c0       	rjmp	.+32     	; 0x54 <__bad_interrupt>
+
+00000034 <__ctors_end>:
+  34:	11 24       	eor	r1, r1
+  36:	1f be       	out	0x3f, r1	; 63
+  38:	cf ef       	ldi	r28, 0xFF	; 255
+  3a:	d2 e0       	ldi	r29, 0x02	; 2
+  3c:	de bf       	out	0x3e, r29	; 62
+  3e:	cd bf       	out	0x3d, r28	; 61
+
+00000040 <__do_clear_bss>:
+  40:	21 e0       	ldi	r18, 0x01	; 1
+  42:	a0 e0       	ldi	r26, 0x00	; 0
+  44:	b1 e0       	ldi	r27, 0x01	; 1
+  46:	01 c0       	rjmp	.+2      	; 0x4a <.do_clear_bss_start>
+
+00000048 <.do_clear_bss_loop>:
+  48:	1d 92       	st	X+, r1
+
+0000004a <.do_clear_bss_start>:
+  4a:	a0 35       	cpi	r26, 0x50	; 80
+  4c:	b2 07       	cpc	r27, r18
+  4e:	e1 f7       	brne	.-8      	; 0x48 <.do_clear_bss_loop>
+  50:	57 d0       	rcall	.+174    	; 0x100 <main>
+  52:	67 c0       	rjmp	.+206    	; 0x122 <_exit>
+
+00000054 <__bad_interrupt>:
+  54:	d5 cf       	rjmp	.-86     	; 0x0 <__vectors>
+
+00000056 <uart_putc>:
+//                        uart_putc
+//
+// Takes a character and sends it to USART0
+//
+void uart_putc(char data) {
+    while (!(UCSR0A&(1<<UDRE0)));    // Wait for previous transmissions
+  56:	90 91 c0 00 	lds	r25, 0x00C0
+  5a:	95 ff       	sbrs	r25, 5
+  5c:	fc cf       	rjmp	.-8      	; 0x56 <uart_putc>
+    UDR0 = data;    // Send data byte
+  5e:	80 93 c6 00 	sts	0x00C6, r24
+    while (!(UCSR0A&(1<<UDRE0)));    // Wait for previous transmissions
+  62:	80 91 c0 00 	lds	r24, 0x00C0
+  66:	85 ff       	sbrs	r24, 5
+  68:	fc cf       	rjmp	.-8      	; 0x62 <uart_putc+0xc>
+}
+  6a:	08 95       	ret
+
+0000006c <uart_puts>:
+// Takes a string and sends each charater to be sent to USART0
+//void uart_puts(unsigned char *str) {
+void uart_puts(char *str) {
+    int i = 0;               
+    // Loop through string, sending each character
+    while(str[i] != '\0') { 
+  6c:	fc 01       	movw	r30, r24
+  6e:	20 81       	ld	r18, Z
+  70:	22 23       	and	r18, r18
+  72:	71 f0       	breq	.+28     	; 0x90 <uart_puts+0x24>
+  74:	31 96       	adiw	r30, 0x01	; 1
+//                        uart_putc
+//
+// Takes a character and sends it to USART0
+//
+void uart_putc(char data) {
+    while (!(UCSR0A&(1<<UDRE0)));    // Wait for previous transmissions
+  76:	80 91 c0 00 	lds	r24, 0x00C0
+  7a:	85 ff       	sbrs	r24, 5
+  7c:	fc cf       	rjmp	.-8      	; 0x76 <uart_puts+0xa>
+    UDR0 = data;    // Send data byte
+  7e:	20 93 c6 00 	sts	0x00C6, r18
+    while (!(UCSR0A&(1<<UDRE0)));    // Wait for previous transmissions
+  82:	80 91 c0 00 	lds	r24, 0x00C0
+  86:	85 ff       	sbrs	r24, 5
+  88:	fc cf       	rjmp	.-8      	; 0x82 <uart_puts+0x16>
+// Takes a string and sends each charater to be sent to USART0
+//void uart_puts(unsigned char *str) {
+void uart_puts(char *str) {
+    int i = 0;               
+    // Loop through string, sending each character
+    while(str[i] != '\0') { 
+  8a:	21 91       	ld	r18, Z+
+  8c:	21 11       	cpse	r18, r1
+  8e:	f3 cf       	rjmp	.-26     	; 0x76 <uart_puts+0xa>
+  90:	08 95       	ret
+
+00000092 <uart_puts_p>:
+//                        uart_puts_p
+// Takes a string in flash memory and sends each charater to USART0
+//void uart_puts(unsigned char *str) {
+void uart_puts_p(const char *str) {      
+    // Loop through string, sending each character
+    while(pgm_read_byte(str) != 0x00) { 
+  92:	9c 01       	movw	r18, r24
+  94:	fc 01       	movw	r30, r24
+  96:	44 91       	lpm	r20, Z
+  98:	44 23       	and	r20, r20
+  9a:	91 f0       	breq	.+36     	; 0xc0 <uart_puts_p+0x2e>
+        uart_putc(pgm_read_byte(str++));
+  9c:	01 96       	adiw	r24, 0x01	; 1
+  9e:	f9 01       	movw	r30, r18
+  a0:	24 91       	lpm	r18, Z
+//                        uart_putc
+//
+// Takes a character and sends it to USART0
+//
+void uart_putc(char data) {
+    while (!(UCSR0A&(1<<UDRE0)));    // Wait for previous transmissions
+  a2:	30 91 c0 00 	lds	r19, 0x00C0
+  a6:	35 ff       	sbrs	r19, 5
+  a8:	fc cf       	rjmp	.-8      	; 0xa2 <uart_puts_p+0x10>
+    UDR0 = data;    // Send data byte
+  aa:	20 93 c6 00 	sts	0x00C6, r18
+    while (!(UCSR0A&(1<<UDRE0)));    // Wait for previous transmissions
+  ae:	20 91 c0 00 	lds	r18, 0x00C0
+  b2:	25 ff       	sbrs	r18, 5
+  b4:	fc cf       	rjmp	.-8      	; 0xae <uart_puts_p+0x1c>
+//                        uart_puts_p
+// Takes a string in flash memory and sends each charater to USART0
+//void uart_puts(unsigned char *str) {
+void uart_puts_p(const char *str) {      
+    // Loop through string, sending each character
+    while(pgm_read_byte(str) != 0x00) { 
+  b6:	9c 01       	movw	r18, r24
+  b8:	fc 01       	movw	r30, r24
+  ba:	44 91       	lpm	r20, Z
+  bc:	41 11       	cpse	r20, r1
+  be:	ee cf       	rjmp	.-36     	; 0x9c <uart_puts_p+0xa>
+        uart_putc(pgm_read_byte(str++));
+    }
+}
+  c0:	08 95       	ret
+
+000000c2 <uart_init>:
+//TXD is PORT D bit 1
+
+void uart_init(){
+//rx and tx enable, receive interrupt enabled, 8 bit characters
+//UCSR0B |= (1<<RXEN0) | (1<<TXEN0) | (1<<RXCIE0); //INTERRUPTS ENABLED
+  UCSR0B |= (1<<RXEN0) | (1<<TXEN0);               //INTERRUPS DISABLED
+  c2:	e1 ec       	ldi	r30, 0xC1	; 193
+  c4:	f0 e0       	ldi	r31, 0x00	; 0
+  c6:	80 81       	ld	r24, Z
+  c8:	88 61       	ori	r24, 0x18	; 24
+  ca:	80 83       	st	Z, r24
+
+//async operation, no parity,  one stop bit, 8-bit characters
+  UCSR0C |= (1<<UCSZ01) | (1<<UCSZ00);
+  cc:	e2 ec       	ldi	r30, 0xC2	; 194
+  ce:	f0 e0       	ldi	r31, 0x00	; 0
+  d0:	80 81       	ld	r24, Z
+  d2:	86 60       	ori	r24, 0x06	; 6
+  d4:	80 83       	st	Z, r24
+  UBRR0H = (BAUDVALUE >>8 ); //load upper byte of the baud rate into UBRR 
+  d6:	10 92 c5 00 	sts	0x00C5, r1
+  UBRR0L =  BAUDVALUE;       //load lower byte of the baud rate into UBRR 
+  da:	87 e6       	ldi	r24, 0x67	; 103
+  dc:	80 93 c4 00 	sts	0x00C4, r24
+  e0:	08 95       	ret
+
+000000e2 <uart_getc>:
+//Modified to not block indefinately in the case of a lost byte
+//
+char uart_getc(void) {
+  uint16_t timer = 0;
+
+  while (!(UCSR0A & (1<<RXC0))) {
+  e2:	80 e8       	ldi	r24, 0x80	; 128
+  e4:	9e e3       	ldi	r25, 0x3E	; 62
+  e6:	03 c0       	rjmp	.+6      	; 0xee <uart_getc+0xc>
+  e8:	01 97       	sbiw	r24, 0x01	; 1
+  timer++;
+  if(timer >= 16000){ return(0);}
+  ea:	00 97       	sbiw	r24, 0x00	; 0
+  ec:	39 f0       	breq	.+14     	; 0xfc <uart_getc+0x1a>
+//Modified to not block indefinately in the case of a lost byte
+//
+char uart_getc(void) {
+  uint16_t timer = 0;
+
+  while (!(UCSR0A & (1<<RXC0))) {
+  ee:	20 91 c0 00 	lds	r18, 0x00C0
+  f2:	27 ff       	sbrs	r18, 7
+  f4:	f9 cf       	rjmp	.-14     	; 0xe8 <uart_getc+0x6>
+  //what should we return if nothing comes in?
+  //return the data into a global variable
+  //give uart_getc the address of the variable
+  //return a -1 if no data comes back.
+  } // Wait for byte to arrive
+  return(UDR0); //return the received data
+  f6:	80 91 c6 00 	lds	r24, 0x00C6
+  fa:	08 95       	ret
+char uart_getc(void) {
+  uint16_t timer = 0;
+
+  while (!(UCSR0A & (1<<RXC0))) {
+  timer++;
+  if(timer >= 16000){ return(0);}
+  fc:	80 e0       	ldi	r24, 0x00	; 0
+  //return the data into a global variable
+  //give uart_getc the address of the variable
+  //return a -1 if no data comes back.
+  } // Wait for byte to arrive
+  return(UDR0); //return the received data
+}
+  fe:	08 95       	ret
+
+00000100 <main>:
+#include <stdlib.h>
+#include <string.h>
+#include "uart_functions_m48.h"
+
+uint8_t main()
+{
+ 100:	cf 93       	push	r28
+ 102:	df 93       	push	r29
+ 104:	00 d0       	rcall	.+0      	; 0x106 <main+0x6>
+ 106:	1f 92       	push	r1
+ 108:	cd b7       	in	r28, 0x3d	; 61
+ 10a:	de b7       	in	r29, 0x3e	; 62
+	char str[] = "Hi";
+ 10c:	88 e4       	ldi	r24, 0x48	; 72
+ 10e:	99 e6       	ldi	r25, 0x69	; 105
+ 110:	a0 e0       	ldi	r26, 0x00	; 0
+ 112:	89 83       	std	Y+1, r24	; 0x01
+ 114:	9a 83       	std	Y+2, r25	; 0x02
+ 116:	ab 83       	std	Y+3, r26	; 0x03
+	uart_init();
+ 118:	d4 df       	rcall	.-88     	; 0xc2 <uart_init>
+	while(1)
+	{
+		uart_puts(str);
+ 11a:	ce 01       	movw	r24, r28
+ 11c:	01 96       	adiw	r24, 0x01	; 1
+ 11e:	a6 df       	rcall	.-180    	; 0x6c <uart_puts>
+ 120:	fc cf       	rjmp	.-8      	; 0x11a <main+0x1a>
+
+00000122 <_exit>:
+ 122:	f8 94       	cli
+
+00000124 <__stop_program>:
+ 124:	ff cf       	rjmp	.-2      	; 0x124 <__stop_program>
