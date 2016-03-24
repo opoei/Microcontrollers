@@ -1,0 +1,41 @@
+ECE473 Lab1:
+
+Purpose: 
+  *Set up OS specific development environment. 
+  *See if your AVR tools install was successful.
+  *Make sure your AVR board is still working.
+  *Get the 473 Lab parts kit. 
+  *Get acquainted with AVR-GCC tools.
+  *Review C programming/compiling.
+  *Get acquainted with downloading code to the uC board.
+
+Task:
+  *Set up your laptop with Linux and/or AVR tools as required BEFORE LAB.
+  *Attach the programmer to your AVR board and USB port.
+  *Download lab1_code.c and the Makefile with "wget" into a working directory. 
+   Compile with gcc by typing "make all" and see that the compiler is working.
+   You should see no errors and a number of files will be produced.
+  *Edit the file "Makefile" to change the programmer from usbasp to osuisp2
+   if you are using the OSU programmer. If you are using the newer programmer
+   using the teensy, stick with usbasp.
+  *Program your mega128 board with the command "make program". This will make 
+   sure that avrdude and your programmer are working correctly. "Makefile" 
+   contains the instructions to properly compile, link and program your board.
+  *See that the original code works. This code counts the number of "S1" button 
+   pushes by using the on-board LEDS as a binary display. Get familiar with the 
+   code and understand what is going on there.
+  *Now...modify the code so that the S1 push button increments the count 
+   as before but the count is displayed as two BCD coded numbers on the 8 
+   LEDS. The four lower and upper LEDs will form each digit. i.e., the LSB
+   digit is displayed on LEDS L1-L4, MSB digit on LEDS L5-L8. (mega128.2
+   refdes) The count will "roll over" to 0 after 99.
+
+What to show for your work:
+  *At the beginning of the next lab period show that you have correctly modified 
+   the code by demonstration. You will hand in your code too.  Print your code out 
+   using the utility "a2ps".  i.e.: a2ps -P [printer_name] [filename.c]
+
+Grading
+  -code functioning correctly 75%
+  -code well commented        25%
+  -lab weighting = 0.05 

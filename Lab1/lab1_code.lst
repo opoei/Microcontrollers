@@ -1,0 +1,388 @@
+
+lab1_code.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000000  00800100  0000021e  000002b2  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         0000021e  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .bss          00000002  00800100  00800100  000002b2  2**0
+                  ALLOC
+  3 .comment      00000011  00000000  00000000  000002b2  2**0
+                  CONTENTS, READONLY
+  4 .debug_aranges 00000068  00000000  00000000  000002c8  2**3
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   000003f2  00000000  00000000  00000330  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 0000019c  00000000  00000000  00000722  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   000001a5  00000000  00000000  000008be  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  00000054  00000000  00000000  00000a64  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    0000011c  00000000  00000000  00000ab8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    000001b2  00000000  00000000  00000bd4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 00000030  00000000  00000000  00000d86  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 46 00 	jmp	0x8c	; 0x8c <__ctors_end>
+   4:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+   8:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+   c:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+  10:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+  14:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+  18:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+  1c:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+  20:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+  24:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+  28:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+  2c:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+  30:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+  34:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+  38:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+  3c:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+  40:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+  44:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+  48:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+  4c:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+  50:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+  54:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+  58:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+  5c:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+  60:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+  64:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+  68:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+  6c:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+  70:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+  74:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+  78:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+  7c:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+  80:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+  84:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+  88:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+
+0000008c <__ctors_end>:
+  8c:	11 24       	eor	r1, r1
+  8e:	1f be       	out	0x3f, r1	; 63
+  90:	cf ef       	ldi	r28, 0xFF	; 255
+  92:	d0 e1       	ldi	r29, 0x10	; 16
+  94:	de bf       	out	0x3e, r29	; 62
+  96:	cd bf       	out	0x3d, r28	; 61
+
+00000098 <__do_clear_bss>:
+  98:	21 e0       	ldi	r18, 0x01	; 1
+  9a:	a0 e0       	ldi	r26, 0x00	; 0
+  9c:	b1 e0       	ldi	r27, 0x01	; 1
+  9e:	01 c0       	rjmp	.+2      	; 0xa2 <.do_clear_bss_start>
+
+000000a0 <.do_clear_bss_loop>:
+  a0:	1d 92       	st	X+, r1
+
+000000a2 <.do_clear_bss_start>:
+  a2:	a2 30       	cpi	r26, 0x02	; 2
+  a4:	b2 07       	cpc	r27, r18
+  a6:	e1 f7       	brne	.-8      	; 0xa0 <.do_clear_bss_loop>
+  a8:	0e 94 c3 00 	call	0x186	; 0x186 <main>
+  ac:	0c 94 0d 01 	jmp	0x21a	; 0x21a <_exit>
+
+000000b0 <__bad_interrupt>:
+  b0:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+000000b4 <debounce_switch>:
+// function can be implemented at the same time.  Expects active low pushbutton on 
+// Port D bit zero.  Debounce time is determined by external loop delay times 12. 
+//*******************************************************************************
+int8_t debounce_switch() {
+  static uint16_t state = 0; //holds present state
+  state = (state << 1) | (! bit_is_clear(PIND, 0)) | 0xE000;
+  b4:	40 b3       	in	r20, 0x10	; 16
+  b6:	20 91 00 01 	lds	r18, 0x0100
+  ba:	30 91 01 01 	lds	r19, 0x0101
+  be:	22 0f       	add	r18, r18
+  c0:	33 1f       	adc	r19, r19
+  c2:	30 6e       	ori	r19, 0xE0	; 224
+  c4:	84 2f       	mov	r24, r20
+  c6:	81 70       	andi	r24, 0x01	; 1
+  c8:	90 e0       	ldi	r25, 0x00	; 0
+  ca:	28 2b       	or	r18, r24
+  cc:	39 2b       	or	r19, r25
+  ce:	30 93 01 01 	sts	0x0101, r19
+  d2:	20 93 00 01 	sts	0x0100, r18
+  if (state == 0xF000) return 1;
+  d6:	81 e0       	ldi	r24, 0x01	; 1
+  d8:	21 15       	cp	r18, r1
+  da:	30 4f       	sbci	r19, 0xF0	; 240
+  dc:	09 f0       	breq	.+2      	; 0xe0 <debounce_switch+0x2c>
+  de:	80 e0       	ldi	r24, 0x00	; 0
+  return 0;
+}
+  e0:	08 95       	ret
+
+000000e2 <decimal_binary>:
+
+int decimal_binary(int n)  /* Function to convert decimal to binary.*/
+{
+    int rem, i=1, binary=0;
+  e2:	60 e0       	ldi	r22, 0x00	; 0
+  e4:	70 e0       	ldi	r23, 0x00	; 0
+    while (n!=0)
+  e6:	00 97       	sbiw	r24, 0x00	; 0
+  e8:	61 f1       	breq	.+88     	; 0x142 <decimal_binary+0x60>
+  return 0;
+}
+
+int decimal_binary(int n)  /* Function to convert decimal to binary.*/
+{
+    int rem, i=1, binary=0;
+  ea:	21 e0       	ldi	r18, 0x01	; 1
+  ec:	30 e0       	ldi	r19, 0x00	; 0
+  ee:	1a c0       	rjmp	.+52     	; 0x124 <decimal_binary+0x42>
+    while (n!=0)
+    {
+            rem=n%2;
+            n/=2;
+  f0:	97 fd       	sbrc	r25, 7
+  f2:	25 c0       	rjmp	.+74     	; 0x13e <decimal_binary+0x5c>
+  f4:	95 95       	asr	r25
+  f6:	87 95       	ror	r24
+            binary+=rem*i;
+  f8:	42 9f       	mul	r20, r18
+  fa:	f0 01       	movw	r30, r0
+  fc:	43 9f       	mul	r20, r19
+  fe:	f0 0d       	add	r31, r0
+ 100:	52 9f       	mul	r21, r18
+ 102:	f0 0d       	add	r31, r0
+ 104:	11 24       	eor	r1, r1
+ 106:	6e 0f       	add	r22, r30
+ 108:	7f 1f       	adc	r23, r31
+            i*=10;
+ 10a:	a9 01       	movw	r20, r18
+ 10c:	44 0f       	add	r20, r20
+ 10e:	55 1f       	adc	r21, r21
+ 110:	22 0f       	add	r18, r18
+ 112:	33 1f       	adc	r19, r19
+ 114:	22 0f       	add	r18, r18
+ 116:	33 1f       	adc	r19, r19
+ 118:	22 0f       	add	r18, r18
+ 11a:	33 1f       	adc	r19, r19
+ 11c:	24 0f       	add	r18, r20
+ 11e:	35 1f       	adc	r19, r21
+}
+
+int decimal_binary(int n)  /* Function to convert decimal to binary.*/
+{
+    int rem, i=1, binary=0;
+    while (n!=0)
+ 120:	00 97       	sbiw	r24, 0x00	; 0
+ 122:	79 f0       	breq	.+30     	; 0x142 <decimal_binary+0x60>
+    {
+            rem=n%2;
+ 124:	ac 01       	movw	r20, r24
+ 126:	41 70       	andi	r20, 0x01	; 1
+ 128:	50 78       	andi	r21, 0x80	; 128
+ 12a:	57 ff       	sbrs	r21, 7
+ 12c:	e1 cf       	rjmp	.-62     	; 0xf0 <decimal_binary+0xe>
+ 12e:	41 50       	subi	r20, 0x01	; 1
+ 130:	51 09       	sbc	r21, r1
+ 132:	4e 6f       	ori	r20, 0xFE	; 254
+ 134:	5f 6f       	ori	r21, 0xFF	; 255
+ 136:	4f 5f       	subi	r20, 0xFF	; 255
+ 138:	5f 4f       	sbci	r21, 0xFF	; 255
+            n/=2;
+ 13a:	97 ff       	sbrs	r25, 7
+ 13c:	db cf       	rjmp	.-74     	; 0xf4 <decimal_binary+0x12>
+ 13e:	01 96       	adiw	r24, 0x01	; 1
+ 140:	d9 cf       	rjmp	.-78     	; 0xf4 <decimal_binary+0x12>
+            binary+=rem*i;
+            i*=10;
+        }
+    return binary;
+}
+ 142:	cb 01       	movw	r24, r22
+ 144:	08 95       	ret
+
+00000146 <led_split>:
+
+void led_split(int8_t num) {
+    int8_t ones, tens;
+
+    ones = num % 10;
+    tens = (num / 10) % 10;
+ 146:	27 e6       	ldi	r18, 0x67	; 103
+ 148:	82 02       	muls	r24, r18
+ 14a:	91 2d       	mov	r25, r1
+ 14c:	11 24       	eor	r1, r1
+ 14e:	95 95       	asr	r25
+ 150:	95 95       	asr	r25
+ 152:	87 fd       	sbrc	r24, 7
+ 154:	93 95       	inc	r25
+ 156:	92 02       	muls	r25, r18
+ 158:	21 2d       	mov	r18, r1
+ 15a:	11 24       	eor	r1, r1
+ 15c:	25 95       	asr	r18
+ 15e:	25 95       	asr	r18
+ 160:	97 fd       	sbrc	r25, 7
+ 162:	23 95       	inc	r18
+ 164:	49 2f       	mov	r20, r25
+ 166:	3a e0       	ldi	r19, 0x0A	; 10
+ 168:	23 9f       	mul	r18, r19
+ 16a:	40 19       	sub	r20, r0
+ 16c:	11 24       	eor	r1, r1
+ 16e:	24 2f       	mov	r18, r20
+    
+    /* Set the LEDs to show the BCD number */
+    PORTB = ones | (tens << 4);
+ 170:	40 e1       	ldi	r20, 0x10	; 16
+ 172:	24 02       	muls	r18, r20
+ 174:	90 01       	movw	r18, r0
+ 176:	11 24       	eor	r1, r1
+}
+
+void led_split(int8_t num) {
+    int8_t ones, tens;
+
+    ones = num % 10;
+ 178:	4a e0       	ldi	r20, 0x0A	; 10
+ 17a:	94 9f       	mul	r25, r20
+ 17c:	80 19       	sub	r24, r0
+ 17e:	11 24       	eor	r1, r1
+    tens = (num / 10) % 10;
+    
+    /* Set the LEDs to show the BCD number */
+    PORTB = ones | (tens << 4);
+ 180:	82 2b       	or	r24, r18
+ 182:	88 bb       	out	0x18, r24	; 24
+ 184:	08 95       	ret
+
+00000186 <main>:
+// PORTB.  This will make an incrementing count on the port B LEDS. 
+//*******************************************************************************
+int main()
+{
+int i = 0;
+DDRB = 0xFF;  //set port B to all outputs
+ 186:	8f ef       	ldi	r24, 0xFF	; 255
+ 188:	87 bb       	out	0x17, r24	; 23
+// Check switch S0.  When found low for 12 passes of "debounc_switch(), increment
+// PORTB.  This will make an incrementing count on the port B LEDS. 
+//*******************************************************************************
+int main()
+{
+int i = 0;
+ 18a:	40 e0       	ldi	r20, 0x00	; 0
+ 18c:	50 e0       	ldi	r21, 0x00	; 0
+ 18e:	77 e6       	ldi	r23, 0x67	; 103
+ 190:	06 c0       	rjmp	.+12     	; 0x19e <main+0x18>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 192:	83 ef       	ldi	r24, 0xF3	; 243
+ 194:	91 e0       	ldi	r25, 0x01	; 1
+ 196:	01 97       	sbiw	r24, 0x01	; 1
+ 198:	f1 f7       	brne	.-4      	; 0x196 <main+0x10>
+ 19a:	00 c0       	rjmp	.+0      	; 0x19c <main+0x16>
+ 19c:	00 00       	nop
+// function can be implemented at the same time.  Expects active low pushbutton on 
+// Port D bit zero.  Debounce time is determined by external loop delay times 12. 
+//*******************************************************************************
+int8_t debounce_switch() {
+  static uint16_t state = 0; //holds present state
+  state = (state << 1) | (! bit_is_clear(PIND, 0)) | 0xE000;
+ 19e:	60 b3       	in	r22, 0x10	; 16
+ 1a0:	80 91 00 01 	lds	r24, 0x0100
+ 1a4:	90 91 01 01 	lds	r25, 0x0101
+ 1a8:	88 0f       	add	r24, r24
+ 1aa:	99 1f       	adc	r25, r25
+ 1ac:	90 6e       	ori	r25, 0xE0	; 224
+ 1ae:	26 2f       	mov	r18, r22
+ 1b0:	21 70       	andi	r18, 0x01	; 1
+ 1b2:	30 e0       	ldi	r19, 0x00	; 0
+ 1b4:	82 2b       	or	r24, r18
+ 1b6:	93 2b       	or	r25, r19
+ 1b8:	90 93 01 01 	sts	0x0101, r25
+ 1bc:	80 93 00 01 	sts	0x0100, r24
+  if (state == 0xF000) return 1;
+ 1c0:	81 15       	cp	r24, r1
+ 1c2:	90 4f       	sbci	r25, 0xF0	; 240
+ 1c4:	31 f7       	brne	.-52     	; 0x192 <main+0xc>
+int i = 0;
+DDRB = 0xFF;  //set port B to all outputs
+while(1){     //do forever
+ if(debounce_switch()) 
+ 	{
+		if(i > 99) {i=0;}
+ 1c6:	44 36       	cpi	r20, 0x64	; 100
+ 1c8:	51 05       	cpc	r21, r1
+ 1ca:	2c f0       	brlt	.+10     	; 0x1d6 <main+0x50>
+ 1cc:	90 e0       	ldi	r25, 0x00	; 0
+ 1ce:	40 e0       	ldi	r20, 0x00	; 0
+ 1d0:	50 e0       	ldi	r21, 0x00	; 0
+
+    ones = num % 10;
+    tens = (num / 10) % 10;
+    
+    /* Set the LEDs to show the BCD number */
+    PORTB = ones | (tens << 4);
+ 1d2:	98 bb       	out	0x18, r25	; 24
+ 1d4:	de cf       	rjmp	.-68     	; 0x192 <main+0xc>
+DDRB = 0xFF;  //set port B to all outputs
+while(1){     //do forever
+ if(debounce_switch()) 
+ 	{
+		if(i > 99) {i=0;}
+		else{i++;}
+ 1d6:	4f 5f       	subi	r20, 0xFF	; 255
+ 1d8:	5f 4f       	sbci	r21, 0xFF	; 255
+ 1da:	47 02       	muls	r20, r23
+ 1dc:	61 2d       	mov	r22, r1
+ 1de:	11 24       	eor	r1, r1
+ 1e0:	65 95       	asr	r22
+ 1e2:	65 95       	asr	r22
+ 1e4:	47 fd       	sbrc	r20, 7
+ 1e6:	63 95       	inc	r22
+ 1e8:	67 02       	muls	r22, r23
+ 1ea:	81 2d       	mov	r24, r1
+ 1ec:	11 24       	eor	r1, r1
+ 1ee:	85 95       	asr	r24
+ 1f0:	85 95       	asr	r24
+ 1f2:	67 fd       	sbrc	r22, 7
+ 1f4:	83 95       	inc	r24
+ 1f6:	e6 2f       	mov	r30, r22
+ 1f8:	9a e0       	ldi	r25, 0x0A	; 10
+ 1fa:	89 9f       	mul	r24, r25
+ 1fc:	e0 19       	sub	r30, r0
+ 1fe:	11 24       	eor	r1, r1
+ 200:	8e 2f       	mov	r24, r30
+ 202:	e0 e1       	ldi	r30, 0x10	; 16
+ 204:	8e 02       	muls	r24, r30
+ 206:	c0 01       	movw	r24, r0
+ 208:	11 24       	eor	r1, r1
+ 20a:	94 2f       	mov	r25, r20
+ 20c:	ea e0       	ldi	r30, 0x0A	; 10
+ 20e:	6e 9f       	mul	r22, r30
+ 210:	90 19       	sub	r25, r0
+ 212:	11 24       	eor	r1, r1
+ 214:	98 2b       	or	r25, r24
+
+    ones = num % 10;
+    tens = (num / 10) % 10;
+    
+    /* Set the LEDs to show the BCD number */
+    PORTB = ones | (tens << 4);
+ 216:	98 bb       	out	0x18, r25	; 24
+ 218:	bc cf       	rjmp	.-136    	; 0x192 <main+0xc>
+
+0000021a <_exit>:
+ 21a:	f8 94       	cli
+
+0000021c <__stop_program>:
+ 21c:	ff cf       	rjmp	.-2      	; 0x21c <__stop_program>
